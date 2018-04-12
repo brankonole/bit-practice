@@ -47,22 +47,18 @@ function findMinimum(array) {
 console.log(findMinimum([4, 2, 2, -1, 6]));
 
 function findSecondMax(inputArr) {
-    var max = inputArr[0];
+    var max = -Infinity;
     var secondMax = -Infinity;
 
-    for (var i = 1; i < inputArr.length; i++) {
+    for (var i = 0; i < inputArr.length; i++) {
         if (inputArr[i] > max) {
             max = inputArr[i];
+        } else if (inputArr[i] > secondMax) {
+            secondMax = inputArr[i];
         }
     }
 
-    for (var j = 0; j < inputArr.length; j++) {
-        if (inputArr[j] > secondMax && inputArr[j] != max) {
-            secondMax = inputArr[j];
-        }
-    }
-
-    return secondMax;
+    return [max, secondMax];
 }
 
 console.log(findSecondMax([-44, 200, 2, -1, 6, 15, 30, -3]));
@@ -129,3 +125,39 @@ function concatArrays(firstArr, secondArr) {
 
 console.log(concatArrays([4, 5, 6, 2], [3, 8, 11, 9]));
 
+function deleteElement(array, elementToDelete){
+    var outputArr = [];
+
+    for (var i = 0, j = 0; i < array.length; i++) {
+        if (array[i] !== elementToDelete) {
+            outputArr[j] = array[i];
+            j++;
+        }
+    }
+
+    return outputArr;
+}
+
+console.log(deleteElement([4, 6, 2, 8, 2, 2], 2));
+
+function insertElement(array, element, position){
+    var outputArr = [];
+
+    if (position > array.length - 1 || position < 0) {
+        return 'Index out of bounds.';
+    }
+
+    for (var i = 0, j = 0; i <= array.length; i++, j++) {
+        if (i < position) {
+            outputArr[j] = array[i];
+        } else if (i === position) {
+            outputArr[j] = element;
+        } else {
+            outputArr[j] = array[i-1];
+        }
+    }
+
+    return outputArr;
+}
+
+console.log(insertElement([2, -2, 33, 12, 5, 8], 78, 3));
